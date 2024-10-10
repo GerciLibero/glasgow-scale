@@ -112,11 +112,13 @@ fn pupillary_reactivity() -> u32 {
         .read_line(&mut pupillary_reactivity_value)
         .expect("Falha na leitura do valor inserido na escala de reatividade pupilar.");
 
+    let err_input_value: u32 = 9;
+
     let pupillary_reactivity_value: u32 = match pupillary_reactivity_value.trim().parse() {
     Ok(num) => num,
-    Err(_) => 0,
+    Err(_) => err_input_value,
     };
-    
+
     let is_valid: bool = match pupillary_reactivity_value {
         0..2 => true,
         _ => false
@@ -126,7 +128,8 @@ fn pupillary_reactivity() -> u32 {
         println!("{pupillary_reactivity_value} é um número válido na escala de reatividade pupilar.");
         pupillary_reactivity_value
     } else {
-        println!("{pupillary_reactivity_value} não é um número válido, a escala de reatividade pupilar aceita apenas valores entre 1 e 5. \n Por favor, insira um valor válido.");
+        println!("{pupillary_reactivity_value} não é um número válido, a escala de reatividade pupilar aceita apenas valores entre 0 e 5. \n Por favor, insira um valor válido.");
         pupillary_reactivity()
     }
-}
+} 
+
